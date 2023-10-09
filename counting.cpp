@@ -42,15 +42,15 @@ void _precalc() {
 }
 
 // O(n^1/2)
-map<int, int> factor(int n) {
+map<int, int> factor(int x) {
 	map<int, int> ret;
-	for (int i = 2; i * i <= n; i++) {
-		while (n % i == 0) {
+	for (int i = 2; i * i <= x; i++) {
+		while (x % i == 0) {
             ret[i]++;
-			n /= i;
+			x /= i;
 		}
 	}
-	if (n > 1) { ret[n]++; }
+	if (x > 1) { ret[x]++; }
 	return ret;
 } 
 
@@ -81,13 +81,13 @@ void fc() {
     int div_num = 1;
     
     while (x != 1) {
-        int prime = max_div[x];
-        int count = 0;
-        while (x % prime == 0) {
-            count++;
-            x /= prime;
+        int pr = max_div[x];
+        int cnt = 0;
+        while (x % pr == 0) {
+            cnt++;
+            x /= pr;
         }
-        div_num *= count + 1;
+        div_num *= (cnt + 1);
     }
     
     cout << div_num << '\n';
