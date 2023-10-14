@@ -29,8 +29,8 @@ template<
     F (*composition) (F, F), // combine 2 tags
     F (*lz_e) ()             // identity tag
 >
-struct LazySegtree {
-	LazySegtree(int _n, vector<S> &a) : _n(_n) {
+struct LazySegTree {
+	LazySegTree(int _n, vector<S> &a) : _n(_n) {
         st = vector<S> (_n*4+1, e());
         lz = vector<F> (_n*4+1, lz_e());
         if (a.size()) build(a, 1, 1, _n);
@@ -80,20 +80,6 @@ struct LazySegtree {
 	S query(int u, int v) {
 		return query(u, v, 1, 1, _n); 
 	}
-
-    void print() {
-        int ind = 1;
-        int row_size = 1;
-        
-        while (ind <= _n) {
-            for (int i = 0; i < row_size; i++) {
-                cerr << st[ind].lazy << "/" << st[ind++].val << '\t';
-            }
-            cerr << endl;
-            row_size *= 2;
-        }
-        cerr << endl;
-    }
 
 private:
     int _n;
@@ -147,6 +133,17 @@ struct RangeSetAddMinSumOps {
     }
 };
 
+// S op(S l, S r) { return S{}; }
+
+// S e() { return S{0}; }
+
+// S mapping(F f, S s) { return S{}; }
+
+// F composition(F f, F g) { return F{}; }
+
+// F lz_e() { return F{}; }
+
+// LazySegTree<S, op, e, F, mapping, composition, lz_e> tree
 
 // addmul
 const int MOD = 998244353;
@@ -176,7 +173,7 @@ S mapping(F f, S s) { return S{add( mul(s.a, f.b), mul(s.size, f.c) ), s.size}; 
 
 F composition(F f, F g) { return F{mul(g.b, f.b), (mul(g.c, f.b) % MOD + f.c) % MOD}; }
 
-F id() { return F{1, 0}; }
+F lz_e() { return F{1, 0}; }
 
 void solve() {
     int q;
@@ -188,7 +185,7 @@ void solve() {
         a[i+1] = S{x, 1};
     }
 
-    LazySegtree<S, op, e, F, mapping, composition, id> seg(n, a);
+    LazySegTree<S, op, e, F, mapping, composition, lz_e> seg(n, a);
 
     for (int i = 0; i < q; i++) {
         char tp; cin >> tp;

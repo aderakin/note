@@ -15,7 +15,7 @@ int last_true() {
 }
 
 int first_true() {
-    int lo = 1, hi = 1e9;
+    int lo = 1, hi = 1e9 + 1;
     
     while (lo < hi) {
 		int mid = lo + (hi - lo) / 2;
