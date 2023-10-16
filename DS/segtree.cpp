@@ -1,24 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
+using ld = long double;
+#define int long long
+
 #define all(v) v.begin(), v.end()
+#define create_unique(vec) sort(all(vec)); vec.resize(unique(all(vec))-vec.begin());
 
-const int MAXN = 1e6 + 10;
-const ll inf = 2e18 + 10;
+#define endl '\n'
+#define db(val) "[" #val " = " << (val) << "] "
+#ifdef LOCAL_DEBUG  
+#   define clog cerr 
+#else
+#   define clog if (0) cerr
+#endif
 
-// 1-based
-struct SegTree {
-	typedef ll T;
-	static constexpr T unit = inf;
+template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
+template<class T> bool ckmax(T& a, const T& b) { return b > a ? a = b, 1 : 0; }
 
+template<
+    class S, 
+    S (*op) (S, S),
+    S (*e) ()
+> struct SegTree {
 	int _n;
-	vector<T> st;
+	vector<S> st;
 	
-	SegTree(int _n) : _n(_n), st(_n*4+1, unit) {}
+	SegTree(int _n) : _n(_n), st(_n*4+1, e()) {}
 
-	T op(T a, T b) { return min(a, b); }
-
-	void update(int p, T x, int id, int lx, int rx) {
+	void update(int p, S x, int id, int lx, int rx) {
 		if (p > rx || p < lx) return;
 		if (lx == rx) {
 			st[id] = x;
@@ -32,26 +42,19 @@ struct SegTree {
 		st[id] = op(st[id*2], st[id*2 + 1]);
 	}
 
-	T query(int u, int v, int id, int lx, int rx) {
-		if (u > rx || v < lx) return unit;
+	S query(int u, int v, int id, int lx, int rx) {
+		if (u > rx || v < lx) return e();
 		if (u <= lx && v >= rx) return st[id];
 
 		int mid = (lx + rx) / 2;
 		return op(query(u, v, id*2, lx, mid), query(u, v, id*2 + 1, mid+1, rx));
 	}
 
-	void update(int p, T x) { 
+	void update(int p, S x) { 
 		update(p, x, 1, 1, _n); 
 	}
 
-	T query(int u, int v) {
+	S query(int u, int v) {
 		return query(u, v, 1, 1, _n); 
 	}
 };
-
-int k;
-
-SegTree tree(k);
-int main () {
-	cout << tree._n;
-}
