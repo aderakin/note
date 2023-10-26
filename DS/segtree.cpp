@@ -58,3 +58,7 @@ template<
 		return query(u, v, 1, 1, _n); 
 	}
 };
+
+using S = int;
+S op(int l, int r) { return l + r; }
+S e() { return 0; }

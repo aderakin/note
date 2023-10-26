@@ -4,12 +4,12 @@ using ll = long long;
 
 void ssbf() {
     int n;
-    for (int mask = 0; mask < (1 << n); mask++) {
+    for (int msk = 0; msk < (1 << n); msk++) {
 
     // get the subset
         for (int i = 0; i < n; i++) {
             // Check if the ith bit is toggled
-            if (mask & (1 << i)) {
+            if (msk & (1 << i)) {
             } 
         }
     }

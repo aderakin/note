@@ -100,6 +100,18 @@ private:
     }
 };
 
+// S op(S l, S r) { return S{}; }
+
+// S e() { return S{0}; }
+
+// S mapping(F f, S s) { return S{}; }
+
+// F composition(F f, F g) { return F{}; }
+
+// F lz_e() { return F{}; }
+
+// LazySegTree<S, op, e, F, mapping, composition, lz_e> tree
+
 struct RangeSetAddMinSumOps {
     struct S { long long sum, min, sz; };
     static S op(S l, S r) { return S { l.sum + r.sum, min(l.min, r.min), l.sz + r.sz }; }
@@ -132,18 +144,6 @@ struct RangeSetAddMinSumOps {
         return F { NOT_SET, 0 };
     }
 };
-
-// S op(S l, S r) { return S{}; }
-
-// S e() { return S{0}; }
-
-// S mapping(F f, S s) { return S{}; }
-
-// F composition(F f, F g) { return F{}; }
-
-// F lz_e() { return F{}; }
-
-// LazySegTree<S, op, e, F, mapping, composition, lz_e> tree
 
 // addmul
 const int MOD = 998244353;

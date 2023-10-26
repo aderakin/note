@@ -20,9 +20,7 @@ struct DSU {
     bool merge(int u, int v) {
         u = get_root(u); v = get_root(v);
         if (u == v) return false;
-        
         lab[v] = u;
-
         return true;
     }
 
