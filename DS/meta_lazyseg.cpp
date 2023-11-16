@@ -42,7 +42,7 @@ struct LazySegTree {
             return;
         }
 
-        int mid = (lx + rx) / 2;
+        int mid = (lx + rx) >> 1;
         build(a, id*2, lx, mid);
         build(a, id*2+1, mid+1, rx);
 
@@ -57,7 +57,7 @@ struct LazySegTree {
 		}
         push(id);
 
-		int mid = (lx + rx) / 2;
+		int mid = (lx + rx) >> 1;
 		apply(u, v, f, id*2, lx, mid);
 		apply(u, v, f, id*2 + 1, mid+1, rx);
 
@@ -73,7 +73,7 @@ struct LazySegTree {
 		if (u <= lx && v >= rx) return st[id];
         push(id);
 
-		int mid = (lx + rx) / 2;
+		int mid = (lx + rx) >> 1;
 		return op(query(u, v, id*2, lx, mid), query(u, v, id*2 + 1, mid+1, rx));
 	}
 

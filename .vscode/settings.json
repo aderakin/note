@@ -20,6 +20,7 @@
         "regex": "cpp",
         "valarray": "cpp",
         "*.tcc": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "iostream": "cpp"
     }
 }

@@ -14,7 +14,7 @@ void setIO(string name = ""){
 
 }
 
-const int inf = 1e9;
+const int inf = 1e9 + 10;
 
 vector<int> lis(vector<int> &a) {
     int n = (int) a.size();

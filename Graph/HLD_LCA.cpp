@@ -11,20 +11,17 @@ const int MAXN = 2e5 + 10;
 
 int n;
 int par[MAXN], s[MAXN], head[MAXN], depth[MAXN];
-int ti = 0;
 vector<int> g[MAXN];
 
-// call dfs(root)
-//      hld(root)
-
-void dfs(int u) {
+// dfs_hld(root); hld(root);
+void dfs_hld(int u) {
     s[u] = 1;
 
     for (int &v: g[u]) {
         par[v] = u; depth[v] = depth[u] + 1; 
         g[v].erase(find(all(g[v]), u)); // remove parent from adj list
 
-        dfs(v); 
+        dfs_hld(v); 
         s[u] += s[v];
         if (s[v] > s[g[u][0]]) swap(v, g[u][0]);
     }

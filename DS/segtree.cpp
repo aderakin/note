@@ -35,7 +35,7 @@ template<
 			return;
 		}
 
-		int mid = (lx + rx) / 2;
+		int mid = (lx + rx) >> 1;
 		update(p, x, id*2, lx, mid);
 		update(p, x, id*2 + 1, mid+1, rx);
 
@@ -46,7 +46,7 @@ template<
 		if (u > rx || v < lx) return e();
 		if (u <= lx && v >= rx) return st[id];
 
-		int mid = (lx + rx) / 2;
+		int mid = (lx + rx) >> 1;
 		return op(query(u, v, id*2, lx, mid), query(u, v, id*2 + 1, mid+1, rx));
 	}
 
@@ -60,5 +60,5 @@ template<
 };
 
 using S = int;
-S op(int l, int r) { return l + r; }
+S op(S l, S r) { return l + r; }
 S e() { return 0; }

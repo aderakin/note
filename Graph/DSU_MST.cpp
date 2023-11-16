@@ -6,10 +6,15 @@ using ld = long double;
 #define create_unique(vec) sort(all(vec)); vec.resize(unique(all(vec))-vec.begin());
 
 struct DSU {
-    vector<int> lab;
+    vector<int> lab, sz;
+    int connected;
 
-    DSU(int _n) : lab(_n+1) {
-        for (int i = 1; i <= _n; i++) lab[i] = i;        
+    DSU(int _n) : lab(_n+1), sz(_n+1) {
+        connected = _n;
+        for (int i = 1; i <= _n; i++) {
+            sz[i] = 1;
+            lab[i] = i;        
+        }
     }
 
     int get_root(int u) {
@@ -20,12 +25,20 @@ struct DSU {
     bool merge(int u, int v) {
         u = get_root(u); v = get_root(v);
         if (u == v) return false;
+
+        if (sz[u] < sz[v]) swap(u, v);
+        connected--;
+        sz[u] += sz[v];
         lab[v] = u;
         return true;
     }
 
     bool same_component(int u, int v) {
         return get_root(u) == get_root(v);
+    }
+
+    int get_size(int u) {
+        return sz[get_root(u)];
     }
 };
 

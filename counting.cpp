@@ -21,7 +21,6 @@ ll binpow(ll a, ll n, ll m) {
 ll fac[MAXN+1];
 ll inv[MAXN+1];
 
-
 ll nCr(int n, int r) { 
     if (n < r) return 0;
     return fac[n] * inv[r] % MOD * inv[n - r] % MOD; 
