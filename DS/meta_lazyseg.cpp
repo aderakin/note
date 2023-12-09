@@ -30,13 +30,14 @@ template<
     F (*lz_e) ()             // identity tag
 >
 struct LazySegTree {
-	LazySegTree(int _n, vector<S> &a) : _n(_n) {
+    LazySegTree(int _n) : LazySegTree(_n, vector<S> (_n+1, e())) {}
+	LazySegTree(int _n, const vector<S> &a) : _n(_n) {
         st = vector<S> (_n*4+1, e());
         lz = vector<F> (_n*4+1, lz_e());
         if (a.size()) build(a, 1, 1, _n);
     }
 
-    void build(vector<S> &a, int id, int lx, int rx) {
+    void build(const vector<S> &a, int id, int lx, int rx) {
         if (lx == rx) {
             st[id] = a[lx];
             return;
@@ -100,15 +101,15 @@ private:
     }
 };
 
-// S op(S l, S r) { return S{}; }
+S op(S l, S r) { return S{}; }
 
-// S e() { return S{0}; }
+S e() { return S{0}; }
 
-// S mapping(F f, S s) { return S{}; }
+S mapping(F f, S s) { return S{}; }
 
-// F composition(F f, F g) { return F{}; }
+F composition(F f, F g) { return F{}; }
 
-// F lz_e() { return F{}; }
+F lz_e() { return F{}; }
 
 // LazySegTree<S, op, e, F, mapping, composition, lz_e> tree
 

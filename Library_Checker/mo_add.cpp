@@ -83,12 +83,12 @@ vector<int> mo_algo() {
     int last_bucket = -1;
     int cur_r = 0, border = 0;
     for (auto &q : queries) {
-        if (q.r - q.l + 1 <= BLOCK_SIZE) continue;
+        if (q.r - q.l <= BLOCK_SIZE) continue;
         int bucket = q.l / BLOCK_SIZE;
 
         if (bucket != last_bucket) {
             ds.init();
-            border = (bucket + 1) * BLOCK_SIZE - 1; // right border of the bucket
+            border = (bucket + 1) * BLOCK_SIZE; // right border of the bucket
             cur_r = q.r;
 
             FOR(i, border, cur_r) {
@@ -103,7 +103,7 @@ vector<int> mo_algo() {
         }
         ds.snapshot();
 
-        FOR(i, q.l, border - 1) {
+        FOR(i, q.l, border-1) {
             ds.insert(a[i]);
         }
 

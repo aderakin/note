@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 

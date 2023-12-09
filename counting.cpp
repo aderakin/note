@@ -6,7 +6,7 @@ using ll = long long;
 const int MAXN = 1e6 + 10;
 const int MOD = 1e9 + 7;
 
-ll binpow(ll a, ll n, ll m) {
+ll binpow(ll a, ll n, ll m = MOD) {
     a %= m;
     ll res = 1;
 
@@ -31,7 +31,6 @@ void _precalc() {
 	for (int i = 1; i <= MAXN; i++) { 
         fac[i] = fac[i - 1] * i % MOD; 
     }
-
 
     inv[MAXN] = binpow(fac[MAXN], MOD - 2, MOD);
 	for (int i = MAXN; i >= 1; i--) { 
@@ -115,4 +114,16 @@ int phi(int n) {
     }
 
     return ans;
+}
+
+void _precalc() {
+    REP(i, MAXN-1) {
+        phi[i] = i;
+    }
+
+    REP(i, MAXN-1) {
+        for (int j = 2*i; j < MAXN; j += i) {
+            phi[j] -= phi[i];
+        }
+    }
 }

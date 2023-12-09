@@ -26,22 +26,22 @@ struct DSU {
         return get_root(root[u]);
     }
 
-    bool merge(int u, int v) {
+    bool unite(int u, int v) {
         u = get_root(u); v = get_root(v);
         if (u == v) return false;
 
         if (sz[u] < sz[v]) swap(u, v);
         
         connected--;
-        mod.push_back({u, v, root[u], root[v]});
+        mod.push_back({u, v, sz[u], sz[v]});
         sz[u] += sz[v];
         root[v] = u;
 
         return true;
     }
 
-    bool merge(pii &x) {
-        return merge(x.first, x.second);
+    bool unite(pii &x) {
+        return unite(x.first, x.second);
     }
 
     bool same_component(int u, int v) {
@@ -66,8 +66,8 @@ struct DSU {
 
             root[a[0]] = a[0];
             root[a[1]] = a[1];
-            sz[a[1]] = a[2];
-            sz[a[0]] = a[3];
+            sz[a[0]] = a[2];
+            sz[a[1]] = a[3];
         } 
     }
 };

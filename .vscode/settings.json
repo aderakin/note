@@ -21,6 +21,7 @@
         "valarray": "cpp",
         "*.tcc": "cpp",
         "bitset": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "complex": "cpp"
     }
 }

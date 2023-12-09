@@ -1,11 +1,16 @@
-
 struct MergeSortTree {
 	int _n;
 	vector<vector<int>> st;
 	
+	MergeSortTree() {}
 	MergeSortTree(int _n) : _n(_n), st(_n*4+1, vector<int>()) {}
 
-	void build(vector<int> &x, int id, int lx, int rx) {
+	void init(int __n) {
+		_n = __n;
+		st.resize(_n*4+1);
+	}
+
+	void build(const vector<int> &x, int id, int lx, int rx) {
 		if (lx == rx) {
 			st[id].push_back(x[lx]);
 			return;
@@ -32,8 +37,4 @@ struct MergeSortTree {
     int query(int u, int v, int k) {
         return query(u, v, k, 1, 1, _n);
     }
-
-	void build(vector<int> &x) { 
-		build(x, 1, 1, _n); 
-	}
 };

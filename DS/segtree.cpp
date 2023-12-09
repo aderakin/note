@@ -1,23 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-using ld = long double;
-#define int long long
-
-#define all(v) v.begin(), v.end()
-#define create_unique(vec) sort(all(vec)); vec.resize(unique(all(vec))-vec.begin());
-
-#define endl '\n'
-#define db(val) "[" #val " = " << (val) << "] "
-#ifdef LOCAL_DEBUG  
-#   define clog cerr 
-#else
-#   define clog if (0) cerr
-#endif
-
-template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
-template<class T> bool ckmax(T& a, const T& b) { return b > a ? a = b, 1 : 0; }
-
 template<
     class S, 
     S (*op) (S, S),
@@ -26,6 +6,7 @@ template<
 	int _n;
 	vector<S> st;
 	
+	SegTree() {}
 	SegTree(int _n) : _n(_n), st(_n*4+1, e()) {}
 
 	void update(int p, S x, int id, int lx, int rx) {
