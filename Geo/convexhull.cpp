@@ -87,7 +87,7 @@ bool inHull(const vector<P>& l, P p, bool strict = true) {
 	if (sideOf(l[0], l[a], p) >= r || sideOf(l[0], l[b], p)<= -r)
 		return false;
 	while (abs(a - b) > 1) {
-		int c = (a + b) / 2;
+		int c = (a + b) >> 1;
 		(sideOf(l[0], l[c], p) > 0 ? b : a) = c;
 	}   
 	return sgn(l[a].cross(l[b], p)) < r;
