@@ -4,7 +4,7 @@ struct DSU {
 
     DSU(int _n) : root(_n+1), sz(_n+1) {
         connected = _n;
-        for (int i = 1; i <= _n; i++) {
+        for (int i = 0; i <= _n; i++) {
             sz[i] = 1;
             root[i] = i;        
         }

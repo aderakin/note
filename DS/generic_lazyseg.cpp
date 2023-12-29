@@ -66,7 +66,7 @@ struct LazySegTree {
 	}
 
     void apply(int u, int v, F f) { 
-		apply(u, v, f, 1, 1, _n); 
+		apply(u, v, f, 1, 0, _n); 
 	}
 
 	S query(int u, int v, int id, int lx, int rx) {
@@ -79,7 +79,7 @@ struct LazySegTree {
 	}
 
 	S query(int u, int v) {
-		return query(u, v, 1, 1, _n); 
+		return query(u, v, 1, 0, _n); 
 	}
 
 private:

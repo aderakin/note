@@ -48,25 +48,25 @@ struct LichaoTree {
 		if(!me->r) me->r = new Node();
 	}
 
-	void add_line(Node *me, int lo, int hi, point nw) {
-		int mid = (lo + hi) >> 1;
-		bool c1 = f(nw, lo) < f(me->line, lo);
+	void add_line(Node *me, int lx, int rx, point nw) {
+		int mid = (lx + rx) >> 1;
+		bool c1 = f(nw, lx) < f(me->line, lx);
 		bool c2 = f(nw, mid) < f(me->line, mid);
 		if(c2) swap(me->line, nw);
-		if(lo == hi) return;
+		if(lx == rx) return;
 
 		expand(me);
-		if(c1 != c2) add_line(me->l, lo, mid, nw);
-		else add_line(me->r, mid+1, hi, nw);
+		if(c1 != c2) add_line(me->l, lx, mid, nw);
+		else add_line(me->r, mid+1, rx, nw);
 	}
 
-	ll query(Node *me, int lo, int hi, int x) {
-		int mid = (lo + hi) >> 1;
-		if(lo == hi) return f(me->line, x);
+	ll query(Node *me, int lx, int rx, int x) {
+		int mid = (lx + rx) >> 1;
+		if(lx == rx) return f(me->line, x);
 
 		expand(me);
-		if(x < mid) return min(f(me->line, x), query(me->l, lo, mid, x));
-		else return min(f(me->line, x), query(me->r, mid+1, hi, x));
+		if(x < mid) return min(f(me->line, x), query(me->l, lx, mid, x));
+		else return min(f(me->line, x), query(me->r, mid+1, rx, x));
 	}
 
 	void add_line(point nw) { add_line(root, 0, SZ, nw); }

@@ -12,12 +12,12 @@ template<class T> bool ckmax(T& a, const T& b) { return b > a ? a = b, 1 : 0; }
 
 struct FenwickTree {
 	int _n;
-	vector<int> ft;
+	vector<int> bit;
 
-	FenwickTree(int _n) : _n(_n), ft(_n+1) {}
+	FenwickTree(int _n) : _n(_n), bit(_n+1) {}
 
-	void update(int i, int x) { for (; i <= _n; i += i&-i) ft[i] += x; }
+	void update(int i, int x) { for (; i <= _n; i += i&-i) bit[i] += x; }
 	void update(int i, int j, int x) { update(i,x); update(j+1,-x); }
-	int query(int i) { int sum = 0; for (; i; i -= i&-i) sum += ft[i]; return sum; }
+	int query(int i) { int sum = 0; for (; i; i -= i&-i) sum += bit[i]; return sum; }
 	int query(int l, int r) { return query(r) - query(l-1); }
 };

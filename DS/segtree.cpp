@@ -32,11 +32,11 @@ template<
 	}
 
 	void update(int p, S x) { 
-		update(p, x, 1, 1, _n); 
+		update(p, x, 1, 0, _n); 
 	}
 
 	S query(int u, int v) {
-		return query(u, v, 1, 1, _n); 
+		return query(u, v, 1, 0, _n); 
 	}
 };
 

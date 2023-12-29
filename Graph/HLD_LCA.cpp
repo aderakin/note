@@ -58,14 +58,13 @@ template<
 	}
 
 	void update(int p, S x) { 
-		update(p, x, 1, 1, _n); 
+		update(p, x, 1, 0, _n); 
 	}
 
 	S query(int u, int v) {
-		return query(u, v, 1, 1, _n); 
+		return query(u, v, 1, 0, _n); 
 	}
 };
-
 
 const int MAXN = 2e5 + 10;
 const bool VALS_IN_EDGES = false;
@@ -82,7 +81,7 @@ void dfs_sz(int u) {
         par[v] = u; depth[v] = depth[u]+1;
         g[v].erase(find(all(g[v]), u)); /// remove parent 
         dfs_sz(v); sz[u] += sz[v];
-        if (sz[v] > sz[g[u][0]]) swap(v,g[u][0]);
+        if (sz[v] > sz[g[u][0]]) swap(v, g[u][0]);
     }
 }
 
@@ -96,7 +95,7 @@ void dfs_hld(int u) {
 
 int lca(int u, int v) {
     for (; nxt[u] != nxt[v]; v = par[nxt[v]]) {
-        if (depth[nxt[u]] > depth[nxt[v]]) swap(u,v);
+        if (depth[nxt[u]] > depth[nxt[v]]) swap(u, v);
     }
 
     return depth[u] < depth[v] ? u : v;
@@ -113,12 +112,11 @@ SegTree<S, op, e> tree(MAXN);
 template <class B>
 void processPath(int u, int v, B op_hld) {
     for (; nxt[u] != nxt[v]; v = par[nxt[v]]) {
-        if (depth[nxt[u]] > depth[nxt[v]]) swap(u,v);
+        if (depth[nxt[u]] > depth[nxt[v]]) swap(u, v);
         op_hld(in[nxt[v]], in[v]); 
     }
 
-    if (depth[u] > depth[v]) swap(u,v);
-
+    if (depth[u] > depth[v]) swap(u, v);
     op_hld(in[u]+VALS_IN_EDGES, in[v]); 
 }
 
