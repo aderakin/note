@@ -71,7 +71,6 @@ struct LichaoTree {
 
 	void add_line(point nw) { add_line(root, 0, SZ, nw); }
 	ll query(int x) { return query(root, 0, SZ, x); } 
-
 } lt;
 
 void solve() {
