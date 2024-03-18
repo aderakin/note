@@ -204,12 +204,14 @@ private:
 };
 
 struct RangeSetAddMinSumOps {
+    // sum, min, sz
     struct S { long long sum, min, sz; };
     static S op(S l, S r) { return S { l.sum + r.sum, min(l.min, r.min), l.sz + r.sz }; }
     static S e() { return S {0LL, INT_MAX, 0}; }
 
-    static const long long NOT_SET = -1000111000;
+    // set, add
     struct F { long long set, add; };
+    static const long long NOT_SET = -1000111000;
 
     static S mapping(F f, S s) {
         if (f.set == NOT_SET) {
@@ -236,6 +238,16 @@ struct RangeSetAddMinSumOps {
     }
 };
 
+using LzSTMin = LazySegTree<
+    RangeSetAddMinSumOps::S,
+    RangeSetAddMinSumOps::op,
+    RangeSetAddMinSumOps::e,
+    RangeSetAddMinSumOps::F,
+    RangeSetAddMinSumOps::mapping,
+    RangeSetAddMinSumOps::composition,
+    RangeSetAddMinSumOps::id
+>;
+
 // S op(S l, S r) { return S{}; }
 
 // S e() { return S{0}; }
@@ -244,6 +256,6 @@ struct RangeSetAddMinSumOps {
 
 // F composition(F f, F g) { return F{}; }
 
-// F lz_e() { return F{}; }
+// F id() { return F{}; }
 
-// LazySegTree<S, op, e, F, mapping, composition, lz_e> tree
+// LazySegTree<S, op, e, F, mapping, composition, id> tree

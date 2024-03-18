@@ -22,4 +22,3 @@ struct HashedString {
 
 };
 vector<ll> HashedString::pows = {1};
-
