@@ -10,10 +10,10 @@ ll binpow(ll a, ll n, ll m = MOD) {
     a %= m;
     ll res = 1;
 
-    while (n > 0) {
+    while (n) {
         if (n & 1) res = res * a % m;
         a = a * a % m;
-        n /= 2;
+        n >>= 1;
     }
     return res;
 }

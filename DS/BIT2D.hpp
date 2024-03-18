@@ -12,7 +12,7 @@ struct BIT2D {
         return ans;
     }
 
-    void __update(int x, int y, int val) {
+    void add(int x, int y, int val) {
         for (int i = x+1; i < SZ; i += -i & i) {
             for (int j = y+1; j < SZ; j += -j & j) {
                 bit[i][j] += val;
@@ -21,9 +21,9 @@ struct BIT2D {
     }
 
     void update(int x1, int y1, int x2, int y2, int val) {
-        __update(x1, y1, val);
-        __update(x1, y2+1, -val);
-        __update(x2+1, y1, -val);
-        __update(x2+1, y2+1, val);
+        add(x1, y1, val);
+        add(x1, y2+1, -val);
+        add(x2+1, y1, -val);
+        add(x2+1, y2+1, val);
     }
 } bit;
