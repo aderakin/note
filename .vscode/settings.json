@@ -17,6 +17,12 @@
         "ranges": "cpp",
         "span": "cpp",
         "stacktrace": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "type_traits": "cpp",
+        "iosfwd": "cpp",
+        "memory": "cpp",
+        "bitset": "cpp",
+        "*.tcc": "cpp",
+        "compare": "cpp"
     }
 }

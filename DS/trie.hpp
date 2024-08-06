@@ -2,11 +2,12 @@
 template <size_t X = 26, char margin = 'a'>
 struct Trie {
     struct Node {
+        // vector<int> idxs;
         array<int, X> nxt;
-        vector<int> idxs;
         int idx;
+        ll num;
         char key;
-        Node(char c) : idx(-1), key(c) { fill(nxt.begin(), nxt.end(), -1); }
+        Node(char c) : idx(-1), key(c), num(0LL) { fill(nxt.begin(), nxt.end(), -1); }
     };
 
     vector<Node> st;
@@ -15,7 +16,7 @@ struct Trie {
 
     inline int &next(int i, int j) { return st[i].nxt[j]; }
 
-    void add(const string &s, int x) {
+    void add(const string &s, int x, int z = 1) {
         int pos = 0;
         for (int i = 0; i < (int)s.size(); i++) {
             int k = s[i] - margin;
@@ -29,6 +30,7 @@ struct Trie {
             pos = npos;
         }
         st[pos].idx = x;
+        st[pos].num += z;
         st[pos].idxs.emplace_back(x);
     }
 
